@@ -9,10 +9,4 @@
 <script setup>
 
 const { data, error } = useFetch('https://jsonplaceholder.typicode.com/posts')
-if (error.value) {
-    
-    console.error('Error fetching posts:', error.value)
-} else {
-    console.log('Fetched posts:', data.value)
-}
 </script>

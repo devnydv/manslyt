@@ -59,7 +59,5 @@ h1 {
 h2 {
     text-align: justify;
 }
-p {
-    
-}
+
 </style>

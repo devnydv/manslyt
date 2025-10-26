@@ -7,10 +7,10 @@
         <h1>Posts</h1>
         
         <div class="card" v-for="post in data" :key="post.id">
-            <img :src="post.imageUrl" alt="">
+            <img :src="post.imageUrl" alt="" loading="lazy"/>
             <div id="content">
             <h2>{{ post.title }}</h2>
-            
+            <p>{{ post.date }}</p>
             <p>{{ post.content }}</p>
             </div>
         

@@ -13,4 +13,14 @@
 <script setup>
 
 const { data, error } = useFetch('https://jsonplaceholder.typicode.com/posts')
+
+useHead({
+    htmlAttrs: {
+        lang: 'en'
+    },
+    title: 'Home Page',
+    meta: [
+        { name: 'description', content: 'This is the home page of our Nuxt 3 application.' }
+    ]
+})
 </script>

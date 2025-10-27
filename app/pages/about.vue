@@ -28,6 +28,7 @@ onMounted(() => {
         <h1>
             {{ value.title }} 
         </h1>
+        <img :src="value.imageUrl" alt="" loading="lazy"/>
         <p>{{ value.content }}</p>
     </div>
   
@@ -36,5 +37,13 @@ onMounted(() => {
 h1{
     text-align: center;
     font-size: large;
+}
+img {
+    max-width: 400px;
+    max-height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
 }
 </style>

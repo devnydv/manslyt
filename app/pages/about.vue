@@ -22,6 +22,7 @@ onMounted(() => {
     <nav>
         <NuxtLink to="/">Home</NuxtLink> |
         <NuxtLink to="/about">About</NuxtLink>
+        <NuxtLink to="/contact">Contact</NuxtLink>
     </nav>
     <h1>About Page</h1>
     <div v-for="value in items" :key="value.id">

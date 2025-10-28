@@ -61,4 +61,19 @@ h2 {
     text-align: justify;
 }
 
+@media(max-width: 700px){
+    .card {
+        width: 95%;
+       display: block;
+    }
+    img {
+        
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
 </style>

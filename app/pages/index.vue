@@ -7,7 +7,7 @@
     <div>
         <h1>Posts</h1>
         
-        <div class="card" v-for="post in data" :key="post.id">
+        <div class="card" v-for="post in data.data" :key="post.id">
             <img :src="post.imageUrl" alt="" loading="lazy"/>
             <div id="content">
             <h2>{{ post.title }}</h2>
@@ -20,7 +20,7 @@
 </template>
 <script setup>
 
-const { data, error } = useFetch('https://filmyapp-e1005.firebaseio.com/news/all/data.json?orderBy="$key"&limitToLast=12')
+const { data, error } = useFetch('/api/hi')
 
 useHead({
     htmlAttrs: {

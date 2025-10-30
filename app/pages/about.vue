@@ -5,9 +5,9 @@ const supabase = createClient(config.public.supabaseUrl, config.public.supabaseP
 const items = ref([])
 
 async function getInstruments() {
-  const { data, error } = await supabase.from('data').select().limit(20)
-  console.log(data, config.public.supabasePublishableKey)
-  console.log(error)
+  const { data, error } = await supabase.from('data').select().limit(10)
+  
+  
   items.value = data
   
 

@@ -1,13 +1,13 @@
 <template>
     <nav>
         <NuxtLink to="/">Home</NuxtLink> |
-        <NuxtLink to="/about">About</NuxtLink>
+        <NuxtLink to="/about">About</NuxtLink> |
         <NuxtLink to="/contact">Contact</NuxtLink>
     </nav>
     <div>
         <h1>Posts</h1>
         
-        <div class="card" v-for="post in data.data" :key="post.id">
+        <div class="card" v-for="post in posts" :key="post.id">
             <img :src="post.imageUrl" alt="" loading="lazy"/>
             <div id="content">
             <h2>{{ post.title }}</h2>
@@ -19,8 +19,10 @@
     </div>
 </template>
 <script setup>
-
 const { data, error } = useFetch('/api/hi')
+
+let posts = computed(() => data.value?.data || []);
+
 
 useHead({
     htmlAttrs: {

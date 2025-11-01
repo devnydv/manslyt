@@ -1,81 +1,135 @@
 <template>
-    <nav>
-        <NuxtLink to="/">Home</NuxtLink> |
-        <NuxtLink to="/about">About</NuxtLink> |
-        <NuxtLink to="/contact">Contact</NuxtLink>
-    </nav>
-    <div>
-        <h1>Posts</h1>
-        
-        <div class="card" v-for="post in posts" :key="post.id">
-            <img :src="post.imageUrl" alt="" loading="lazy"/>
-            <div id="content">
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.date }}</p>
-            <p>{{ post.content }}</p>
+    <div class="scroll-container">
+        <a href="#" class="scroll-btn">All</a>
+        <a href="#" class="scroll-btn">Science</a>
+        <a href="#" class="scroll-btn">Technology</a>
+        <a href="#" class="scroll-btn">Sports</a>
+        <a href="#" class="scroll-btn">Entertainment</a>
+
+    </div>
+    <div class="card-grid">
+        <div v-for="item in data" :key="item.id" class="card">
+            <img :src="item.imageUrl" alt="card image" class="card-img" loading="lazy" />
+            <div class="card-content">
+                <h3 class="card-title">{{ item.title }}</h3>
+                <p class="card-date">{{ item.date }}</p>
+                <p class="card-desc">{{ item.content }}</p>
             </div>
-        
         </div>
     </div>
 </template>
+
 <script setup>
-const { data, error } = useFetch('/api/hi')
+const { data, error } = useFetch('https://filmyapp-e1005.firebaseio.com/news/all/data.json?orderBy="$key"&limitToLast=12');
+console.log(data);
 
-let posts = computed(() => data.value?.data || []);
-
-
-useHead({
-    htmlAttrs: {
-        lang: 'en'
-    },
-    title: 'Home Page',
-    meta: [
-        { name: 'description', content: 'This is the home page of our Nuxt 3 application.' }
-    ]
-})
 </script>
 
 <style scoped>
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
 
 .card {
-    max-width: 80%;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #e2e1e1;
-}
-img {
-    max-width: 300px;
-    max-height: 300px;
-    padding: 20px;
-    
-
-}
-h1 {
-    text-align: center;
-}
-h2 {
-    text-align: justify;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
-@media(max-width: 700px){
-    .card {
-        width: 95%;
-       display: block;
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-date {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0.3rem 0 0.6rem;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* limits to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive behavior */
+@media (min-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
-    img {
-        
-        height: auto;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
 
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  /* background-color: #202020; */
+  white-space: nowrap;
+}
+
+/* Hide scrollbar (for Chrome, Safari, Opera) */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Buttons (anchor style) */
+.scroll-btn {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #333;
+  flex-shrink: 0;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.scroll-btn:hover {
+  background-color: #00adb5;
+  color: #242323;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .scroll-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
 </style>

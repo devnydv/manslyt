@@ -21,7 +21,7 @@
 
 <script setup>
 const { data, error } = useFetch('https://filmyapp-e1005.firebaseio.com/news/all/data.json?orderBy="$key"&limitToLast=12');
-console.log(data);
+
 
 
 useHead(() => {

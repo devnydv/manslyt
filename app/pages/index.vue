@@ -1,6 +1,6 @@
 <template>
     <div class="scroll-container">
-        <a href="#" class="scroll-btn">All</a>
+        <a href="/" class="scroll-btn">All</a>
         <a href="#" class="scroll-btn">Science</a>
         <a href="#" class="scroll-btn">Technology</a>
         <a href="#" class="scroll-btn">Sports</a>
@@ -23,6 +23,15 @@
 const { data, error } = useFetch('https://filmyapp-e1005.firebaseio.com/news/all/data.json?orderBy="$key"&limitToLast=12');
 console.log(data);
 
+
+useHead(() => {
+    return {
+        title: '12khabar - Home Page',
+        meta: [
+            { name: 'description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' }
+        ]
+    }
+})
 </script>
 
 <style scoped>

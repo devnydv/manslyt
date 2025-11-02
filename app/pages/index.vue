@@ -1,5 +1,5 @@
 <template>
-    <h1>12khabar - One day one news</h1>
+    <h1>12khabar - Twelve days twelve news</h1>
     <Nav></Nav>
     
     <div class="card-grid">
@@ -23,9 +23,18 @@ console.log(data.value);
 
 useHead(() => {
     return {
-        title: '12khabar - Home Page',
+        title: '12khabar - Twelve days twelve news',
         meta: [
-            { name: 'description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' }
+            { name: 'description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' },
+            { name: 'keywords', content: 'news, latest news, world news, breaking news, 12khabar, twelve news, daily news' },
+            { name: 'author', content: '12khabar' },
+            { name: 'og:title', content: '12khabar - Twelve days twelve news' },
+            { name: 'og:description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' },
+            { name: 'og:type', content: 'website' },
+            { name: 'og:url', content: 'https://12khabar.pages.dev/' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:title', content: '12khabar - Twelve days twelve news' },
+            { name: 'twitter:description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' }
         ],
         htmlAttrs: {
             lang: 'hi'
@@ -34,7 +43,7 @@ useHead(() => {
 })
 </script>
 
-<style>
+<style scoped>
 a {
     text-decoration: none;
 }
@@ -100,5 +109,10 @@ a {
     .card-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+h1 {
+    text-align: center;
+    margin: 1rem 0;
 }
 </style>

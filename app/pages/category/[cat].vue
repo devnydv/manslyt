@@ -3,14 +3,15 @@
     <Nav></Nav>
     <p id="notfound">{{ notfound }} </p>
     <div class="card-grid">
-        <div v-for="item in data" :key="item.id" class="card">
+        <a :href="`/category/${category}/${item.id}`" class="card" v-for="item in data" :key="item.id">
             <img :src="item.imageUrl" alt="card image" class="card-img" loading="lazy" />
             <div class="card-content">
                 <h3 class="card-title">{{ item.title }}</h3>
                 <p class="card-date">{{ item.date }}</p>
                 <p class="card-desc">{{ item.content }}</p>
             </div>
-        </div>
+        
+        </a>
     </div>
 </template>
 
@@ -24,7 +25,8 @@ const { data, error } = useFetch('/api/cate/' + category);
 onMounted(() => {
     if (data.value && Array.isArray(data.value) && data.value.length === 0) {
 
-        notfound.value = "No news found for this category. Select another category from above.";
+        notfound.value = "No news found for this category. Redirecting to home...";
+        window.location.replace('/');
     }
 })
 const title = `${category.charAt(0).toUpperCase() + category.slice(1)} News - 12khabar `;
@@ -33,7 +35,16 @@ useHead(() => {
     return {
         title: title,
         meta: [
-            { name: 'description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` }
+            { name: 'description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` },
+            { name: 'keywords', content: `news, ${category} news, latest ${category} news, breaking ${category} news, 12khabar` },
+            { name: 'author', content: '12khabar' },
+            { name: 'og:title', content: title },
+            { name: 'og:description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` },
+            { name: 'og:type', content: 'website' },
+            { name: 'og:url', content: `https://12khabar.pages.dev/category/${category}` },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:title', content: title },
+            { name: 'twitter:description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` }
         ],
         htmlAttrs: {
             lang: 'hi'
@@ -43,14 +54,16 @@ useHead(() => {
 </script>
 
 
-<style>
+<style scoped>
 #notfound {
     text-align: center;
     font-size: 1.2rem;
     color: #ff0000;
     margin: 1rem 0;
 }
-
+a {
+    text-decoration: none;
+}
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

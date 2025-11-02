@@ -29,11 +29,12 @@ onMounted(() => {
         window.location.replace('/');
     }
 })
-const title = `${category.charAt(0).toUpperCase() + category.slice(1)} News - 12khabar `;
+const title = `News from ${category.charAt(0).toUpperCase() + category.slice(1)} Category - 12khabar `;
 
 useHead(() => {
     return {
         title: title,
+        
         meta: [
             { name: 'description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` },
             { name: 'keywords', content: `news, ${category} news, latest ${category} news, breaking ${category} news, 12khabar` },

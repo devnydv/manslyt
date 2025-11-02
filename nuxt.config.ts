@@ -6,6 +6,15 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  app: {
+    head: {
+    link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
+    { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+    
+  ],
+},
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: true,
@@ -14,5 +23,6 @@ export default defineNuxtConfig({
       supabaseUrl: "https://ltsuvxczpjfoldcykhop.supabase.co",
       supabasePublishableKey: "sb_publishable_Gj9LBEufTa3YT7_xbcbyNw_aTwEQwOg",
     },
+    
   },
 })

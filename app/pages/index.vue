@@ -7,7 +7,7 @@
 
             <img :src="item.imageUrl" alt="card image" class="card-img" loading="lazy" />
             <div class="card-content">
-                <h3 class="card-title">{{ item.title }}</h3>
+                <h2 class="card-title">{{ item.title }}</h2>
                 <p class="card-date">{{ item.date }}</p>
                 <p class="card-desc">{{ item.content }}</p>
             </div>
@@ -88,7 +88,7 @@ a {
 
 .card-date {
     font-size: 0.85rem;
-    color: #888;
+    color: #686868;
     margin: 0.3rem 0 0.6rem;
 }
 

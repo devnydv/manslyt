@@ -1,5 +1,7 @@
 <template>
+    <h1> {{ title }}</h1>
     <Nav></Nav>
+    
     <div class="card-grid">
         <div v-for="item in data" :key="item.id" class="card">
             <img :src="item.imageUrl" alt="card image" class="card-img" loading="lazy" />
@@ -13,19 +15,21 @@
 </template>
 
 <script setup>
-const { data, error } = useFetch('/api/data');
-
-
+const route = useRoute();
+const category = route.params.cat;
+const { data, error } = useFetch('/api/cate/' + category);
+const title = `${category.charAt(0).toUpperCase() + category.slice(1)} News - 12khabar `;
 
 useHead(() => {
     return {
-        title: '12khabar - Home Page',
+        title: `12khabar - ${category.charAt(0).toUpperCase() + category.slice(1)} News`,
         meta: [
-            { name: 'description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' }
+            { name: 'description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` }
         ]
     }
 })
 </script>
+
 
 <style>
 .card-grid {
@@ -92,6 +96,9 @@ useHead(() => {
     }
 }
 
-
+h1 {
+    text-align: center;
+    margin: 1rem 0;
+}
 
 </style>

@@ -22,7 +22,7 @@ const title = `${category.charAt(0).toUpperCase() + category.slice(1)} News - 12
 
 useHead(() => {
     return {
-        title: `12khabar - ${category.charAt(0).toUpperCase() + category.slice(1)} News`,
+        title: title,
         meta: [
             { name: 'description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` }
         ]

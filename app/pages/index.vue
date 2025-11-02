@@ -18,7 +18,7 @@
 
 <script setup>
 const { data, error } = useFetch('/api/data');
-console.log(data.value);
+
 
 
 useHead(() => {

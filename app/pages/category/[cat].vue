@@ -1,7 +1,7 @@
 <template>
     <h1> {{ title }}</h1>
     <Nav></Nav>
-    
+    <p id="notfound">{{ notfound }} </p>
     <div class="card-grid">
         <div v-for="item in data" :key="item.id" class="card">
             <img :src="item.imageUrl" alt="card image" class="card-img" loading="lazy" />
@@ -15,9 +15,18 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+const notfound = ref("");
 const route = useRoute();
 const category = route.params.cat;
 const { data, error } = useFetch('/api/cate/' + category);
+
+onMounted(() => {
+    if (data.value && Array.isArray(data.value) && data.value.length === 0) {
+
+        notfound.value = "No news found for this category. Select another category from above.";
+    }
+})
 const title = `${category.charAt(0).toUpperCase() + category.slice(1)} News - 12khabar `;
 
 useHead(() => {
@@ -25,13 +34,23 @@ useHead(() => {
         title: title,
         meta: [
             { name: 'description', content: `Latest news and updates in the ${category} category. Stay informed with 12khabar.` }
-        ]
+        ],
+        htmlAttrs: {
+            lang: 'hi'
+        }
     }
 })
 </script>
 
 
 <style>
+#notfound {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ff0000;
+    margin: 1rem 0;
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -100,5 +119,4 @@ h1 {
     text-align: center;
     margin: 1rem 0;
 }
-
 </style>

@@ -1,20 +1,24 @@
 <template>
+    <h1>12khabar - One day one news</h1>
     <Nav></Nav>
+    
     <div class="card-grid">
-        <div v-for="item in data" :key="item.id" class="card">
+        <a :href="`/category/all/${item.id}`" class="card" v-for="item in data" :key="item.id">
+
             <img :src="item.imageUrl" alt="card image" class="card-img" loading="lazy" />
             <div class="card-content">
                 <h3 class="card-title">{{ item.title }}</h3>
                 <p class="card-date">{{ item.date }}</p>
                 <p class="card-desc">{{ item.content }}</p>
             </div>
-        </div>
+        
+        </a>
     </div>
 </template>
 
 <script setup>
 const { data, error } = useFetch('/api/data');
-
+console.log(data.value);
 
 
 useHead(() => {
@@ -22,12 +26,18 @@ useHead(() => {
         title: '12khabar - Home Page',
         meta: [
             { name: 'description', content: '12 khabre duniya bhar se. Apne samay ka sahi istemal karein. Pay attention to the news that matters to you.' }
-        ]
+        ],
+        htmlAttrs: {
+            lang: 'hi'
+        }
     }
 })
 </script>
 
 <style>
+a {
+    text-decoration: none;
+}
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -91,7 +101,4 @@ useHead(() => {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-
-
-
 </style>

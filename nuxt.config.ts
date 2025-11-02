@@ -11,7 +11,10 @@ export default defineNuxtConfig({
     link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
     { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-    
+  
+  ],
+  meta: [
+    { name: 'google-site-verification', content: 'CcKplNntL7AOrykjQgTtc-_CPJn_nA9-Q1AN-usgB30' },
   ],
 },
   },
